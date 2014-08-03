@@ -9,20 +9,33 @@
 #import "GameScene.h"
 #import "JSTileMap.h"
 
+@interface GameScene () 
+
+@property (strong, nonatomic) JSTileMap         *tiledMap;
+@end
+
+
 @implementation GameScene
 
 -(void)didMoveToView:(SKView *)view {
     /* Setup your scene here */
 
-    JSTileMap *test = [JSTileMap mapNamed:@"test.tmx"];
-    [self addChild:test];
-    test.position = CGPointMake(400, 200);
+    _tiledMap = [JSTileMap mapNamed:@"Sky.tmx"];
+    if (_tiledMap) {
+        [self addChild:_tiledMap];
+    }
     
-    SKAction *scrollLeft = [SKAction moveByX:-100 y:0 duration:2];
-    SKAction *scrollRight = [SKAction moveByX:100 y:0 duration:2];
-    SKAction *sequence = [SKAction sequence:@[scrollLeft, scrollRight]];
-    SKAction *repeat  = [SKAction repeatActionForever:sequence];
-    [test runAction:repeat];
+    TMXLayer *cloudLayer1 = [_tiledMap layerNamed:@"CloudLayer1"];
+    cloudLayer1.position = CGPointMake(0, 0);
+    
+    SKAction *scrollLeft = [SKAction moveByX:-self.frame.size.width y:0 duration:5];
+    SKAction *reset = [SKAction runBlock:^{
+        cloudLayer1.position = CGPointMake(0, 0);
+    }];
+    SKAction *sequence = [SKAction sequence:@[scrollLeft, reset]];
+    SKAction *repeat   = [SKAction repeatActionForever:sequence];
+    //
+    [cloudLayer1 runAction:repeat];
     
     
 }

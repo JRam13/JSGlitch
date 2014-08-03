@@ -105,20 +105,20 @@
 
 -(void)removeTileAtCoord:(CGPoint)coord
 {
-	uint32_t gid = (uint32_t)[self.layerInfo tileGidAtCoord:coord];
-	
-	if( gid )
-	{
-		NSUInteger z = coord.x + coord.y * self.layerInfo.layerGridSize.width;
-		
-		// remove tile from GID map
-		self.layerInfo.tiles[z] = 0;
-		
-		SKNode* tileNode = [self childNodeWithName:[NSString stringWithFormat:@"//%d",
-													(int)(coord.x + coord.y * self.layerInfo.layerGridSize.width)]];
-		if(tileNode)
-			[tileNode removeFromParent];
-	}
+//	uint32_t gid = (uint32_t)[self.layerInfo tileGidAtCoord:coord];
+//	
+//	if( gid )
+//	{
+//		NSUInteger z = coord.x + coord.y * self.layerInfo.layerGridSize.width;
+//		
+//		// remove tile from GID map
+//		self.layerInfo.tiles[z] = 0;
+//		
+//		SKNode* tileNode = [self childNodeWithName:[NSString stringWithFormat:@"//%d",
+//													(int)(coord.x + coord.y * self.layerInfo.layerGridSize.width)]];
+//		if(tileNode)
+//			[tileNode removeFromParent];
+//	}
 }
 
 

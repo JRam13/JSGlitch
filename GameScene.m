@@ -28,13 +28,15 @@
     TMXLayer *cloudLayer1 = [_tiledMap layerNamed:@"CloudLayer1"];
     cloudLayer1.position = CGPointMake(0, 0);
     
-    SKAction *scrollLeft = [SKAction moveByX:-self.frame.size.width y:0 duration:5];
+    SKAction *scrollLeft = [SKAction moveByX:-200 y:0 duration:3];
+    SKAction *scrollRight = [SKAction moveByX:200 y:0 duration:3];
+    
     SKAction *reset = [SKAction runBlock:^{
         cloudLayer1.position = CGPointMake(0, 0);
     }];
-    SKAction *sequence = [SKAction sequence:@[scrollLeft, reset]];
+    SKAction *sequence = [SKAction sequence:@[scrollLeft, scrollRight]];
     SKAction *repeat   = [SKAction repeatActionForever:sequence];
-    //
+    
     [cloudLayer1 runAction:repeat];
     
     

@@ -15,7 +15,7 @@
 //significant improvement for larger maps
 //Works on scaled maps, but doesn't handle rotated maps
 
-#define CullNodes 1
+#define CullNodes 0
 
 enum
 {
